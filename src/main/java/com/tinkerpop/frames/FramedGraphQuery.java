@@ -19,7 +19,7 @@ public interface FramedGraphQuery
     /**
      * Execute the query and return the matching edges.
      *
-     * @param the default annotated interface to frame the edge as
+     * @param kind the default annotated interface to frame the edge as
      * @return the unfiltered incident edges
      */
     <T> Iterable<T> edges(Class<T> kind);
@@ -27,7 +27,7 @@ public interface FramedGraphQuery
     /**
      * Execute the query and return the vertices on the other end of the matching edges.
      *
-     * @param the default annotated interface to frame the vertex as
+     * @param kind the default annotated interface to frame the vertex as
      * @return the unfiltered adjacent vertices
      */
     <T> Iterable<T> vertices(Class<T> kind);

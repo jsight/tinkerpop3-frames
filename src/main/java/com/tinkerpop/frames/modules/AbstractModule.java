@@ -1,6 +1,6 @@
 package com.tinkerpop.frames.modules;
 
-import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
+import org.apache.tinkerpop.gremlin.structure.Graph;
 
 import com.tinkerpop.frames.FramedGraphConfiguration;
 
@@ -14,7 +14,7 @@ public class AbstractModule implements Module
 {
 
     @Override
-    public final TinkerGraph configure(TinkerGraph baseGraph, FramedGraphConfiguration config)
+    public final Graph configure(Graph baseGraph, FramedGraphConfiguration config)
     {
         baseGraph = doConfigure(baseGraph, config);
         doConfigure(config);
@@ -26,7 +26,7 @@ public class AbstractModule implements Module
      * @param config The configuration for the new FramedGraph.
      * @return The graph being framed.
      */
-    protected TinkerGraph doConfigure(TinkerGraph baseGraph, FramedGraphConfiguration config)
+    protected Graph doConfigure(Graph baseGraph, FramedGraphConfiguration config)
     {
         return baseGraph;
     }

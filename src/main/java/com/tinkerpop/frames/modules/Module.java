@@ -1,6 +1,6 @@
 package com.tinkerpop.frames.modules;
 
-import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
+import org.apache.tinkerpop.gremlin.structure.Graph;
 
 import com.tinkerpop.frames.FrameInitializer;
 import com.tinkerpop.frames.FramedGraph;
@@ -29,6 +29,6 @@ public interface Module
      * @param config The configuration for the new FramedGraph.
      * @return The graph being framed.
      */
-    TinkerGraph configure(TinkerGraph baseGraph, FramedGraphConfiguration config);
+    Graph configure(Graph baseGraph, FramedGraphConfiguration config);
 
 }

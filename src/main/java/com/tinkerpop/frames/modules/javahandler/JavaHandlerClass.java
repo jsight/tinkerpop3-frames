@@ -7,26 +7,27 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- * When using the {@link JavaHandler} you can change the implementation class
- * from the default to another class by using this annotation on your frame
+ * When using the {@link JavaHandler} you can change the implementation class from the default to another class by using this annotation on your frame
  * class. For example:
  * </p>
  * 
  * <pre>
  * 
  * &#064;JavaHandlerClass(PersonImpl.class)
- * interface Person {
+ * interface Person
+ * {
  * 
- *   &#064;JavaHandler
- *   public String doSomething(); 
+ *     &#064;JavaHandler
+ *     public String doSomething();
  * 
- *   
  * }
  * 
- * abstract class PersonImpl implements Person, JavaHandlerContext<Vertex> {
- *   public String doSomething() {
- *     return "Use Frames!";
- *   }
+ * abstract class PersonImpl implements Person, JavaHandlerContext&lt;Vertex&gt;
+ * {
+ *     public String doSomething()
+ *     {
+ *         return "Use Frames!";
+ *     }
  * }
  * 
  * </pre>

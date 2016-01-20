@@ -18,7 +18,6 @@ import org.apache.tinkerpop.gremlin.structure.util.wrapped.WrappedGraph;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 
 import com.tinkerpop.frames.annotations.AdjacencyAnnotationHandler;
-import com.tinkerpop.frames.annotations.DomainAnnotationHandler;
 import com.tinkerpop.frames.annotations.InVertexAnnotationHandler;
 import com.tinkerpop.frames.annotations.IncidenceAnnotationHandler;
 import com.tinkerpop.frames.annotations.OutVertexAnnotationHandler;
@@ -67,7 +66,6 @@ public class FramedGraph<T extends TinkerGraph> implements Graph, WrappedGraph<T
         configViaFactory = false;
         this.config.addAnnotationHandler(new AdjacencyAnnotationHandler());
         this.config.addAnnotationHandler(new IncidenceAnnotationHandler());
-        this.config.addAnnotationHandler(new DomainAnnotationHandler());
         this.config.addAnnotationHandler(new InVertexAnnotationHandler());
         this.config.addAnnotationHandler(new OutVertexAnnotationHandler());
         this.config.addAnnotationHandler(new GremlinGroovyAnnotationHandler());
@@ -119,7 +117,7 @@ public class FramedGraph<T extends TinkerGraph> implements Graph, WrappedGraph<T
         }
 
         Collection<Class<?>> resolvedTypes = new HashSet<Class<?>>();
-        resolvedTypes.add(VertexFrame.class);
+        resolvedTypes.add(EdgeFrame.class);
         resolvedTypes.add(kind);
         for (TypeResolver typeResolver : config.getTypeResolvers())
         {
@@ -219,7 +217,15 @@ public class FramedGraph<T extends TinkerGraph> implements Graph, WrappedGraph<T
      */
     public <F> F getVertex(final Object id, final Class<F> kind)
     {
-        return this.frame(getBaseGraph().vertices(id).next(), kind);
+        Iterator<Vertex> vertices = getBaseGraph().vertices(id);
+        if (!vertices.hasNext())
+        {
+            return null;
+        }
+        else
+        {
+            return this.frame(vertices.next(), kind);
+        }
     }
 
     /**
@@ -266,7 +272,15 @@ public class FramedGraph<T extends TinkerGraph> implements Graph, WrappedGraph<T
      */
     public <F> F getEdge(final Object id, final Class<F> kind)
     {
-        return this.frame(getBaseGraph().edges(id).next(), kind);
+        Iterator<Edge> vertices = getBaseGraph().edges(id);
+        if (!vertices.hasNext())
+        {
+            return null;
+        }
+        else
+        {
+            return this.frame(vertices.next(), kind);
+        }
     }
 
     public Features getFeatures()

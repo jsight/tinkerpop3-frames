@@ -1,10 +1,9 @@
 package com.tinkerpop.frames.modules;
 
 /**
- * Implements a basic FrameClassLoaderResolver that simply returns
- * the ClassLoader of the provided Frame Type.
+ * Implements a basic FrameClassLoaderResolver that simply returns the ClassLoader of the provided Frame Type.
  *
- * @author Jess Sightler <jesse.sightler@gmail.com>
+ * @author <a href="mailto:jesse.sightler@gmail.com">Jess Sightler</a>
  */
 public class DefaultClassLoaderResolver implements FrameClassLoaderResolver {
     @Override

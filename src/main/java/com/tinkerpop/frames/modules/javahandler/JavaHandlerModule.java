@@ -11,7 +11,7 @@ import javassist.util.proxy.Proxy;
 import javassist.util.proxy.ProxyFactory;
 
 import org.apache.tinkerpop.gremlin.structure.Element;
-import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
+import org.apache.tinkerpop.gremlin.structure.Graph;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -36,7 +36,7 @@ import com.tinkerpop.frames.modules.Module;
  *     &#064;JavaHandler
  *     public String doSomething();
  *
- *     abstract class Impl implements Person, JavaHandlerContext<Vertex>
+ *     abstract class Impl implements Person, JavaHandlerContext&lt;Vertex&gt;
  *     {
  *         public String doSomething()
  *         {
@@ -107,7 +107,7 @@ public class JavaHandlerModule implements Module
     }
 
     @Override
-    public TinkerGraph configure(TinkerGraph baseGraph, FramedGraphConfiguration config)
+    public Graph configure(Graph baseGraph, FramedGraphConfiguration config)
     {
 
         config.addMethodHandler(new JavaMethodHandler(this));

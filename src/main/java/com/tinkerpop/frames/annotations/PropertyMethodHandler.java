@@ -25,7 +25,8 @@ public class PropertyMethodHandler implements MethodHandler<Property>
     {
         if (ClassUtilities.isGetMethod(method))
         {
-            Object value = element.property(annotation.value()).value();
+            org.apache.tinkerpop.gremlin.structure.Property<?> property = element.property(annotation.value());
+            Object value = property.isPresent() ? property.value() : null;
             if (method.getReturnType().isEnum())
                 return getValueAsEnum(method, value);
             else

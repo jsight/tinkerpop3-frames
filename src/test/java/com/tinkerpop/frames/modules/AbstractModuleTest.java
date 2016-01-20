@@ -15,7 +15,7 @@ public class AbstractModuleTest
     @Test
     public void testNoWrapping()
     {
-        TinkerGraph baseGraph = Mockito.mock(TinkerGraph.class);
+        Graph baseGraph = Mockito.mock(Graph.class);
 
         FramedGraphConfiguration config = new FramedGraphConfiguration();
         AbstractModule module = Mockito.mock(AbstractModule.class);
@@ -32,9 +32,9 @@ public class AbstractModuleTest
     @Test
     public void testWrapping()
     {
-        TinkerGraph baseGraph = Mockito.mock(TinkerGraph.class);
+        Graph baseGraph = Mockito.mock(Graph.class);
 
-        TinkerGraph wrappedGraph = Mockito.mock(TinkerGraph.class);
+        Graph wrappedGraph = Mockito.mock(Graph.class);
 
         FramedGraphConfiguration config = new FramedGraphConfiguration();
         AbstractModule module = Mockito.mock(AbstractModule.class);

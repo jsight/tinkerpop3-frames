@@ -3,6 +3,8 @@ package com.tinkerpop.frames.modules.typedgraph;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.tinkerpop.gremlin.structure.Element;
+
 import com.tinkerpop.frames.FramedGraph;
 import com.tinkerpop.frames.util.Validate;
 
@@ -73,8 +75,8 @@ public class TypeRegistry
     }
 
     /**
-     * @param Add the interface to the registry. The interface should have a {@link TypeValue} annotation, and there should be a {@link TypeField}
-     *            annotation on the interface or its parents.
+     * @param type Add the interface to the registry. The interface should have a {@link TypeValue} annotation, and there should be a
+     *            {@link TypeField} annotation on the interface or its parents.
      */
     public TypeRegistry add(Class<?> type)
     {

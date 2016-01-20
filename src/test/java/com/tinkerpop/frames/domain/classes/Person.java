@@ -113,10 +113,6 @@ public interface Person extends NamedObject
     @GremlinGroovy("person.asVertex().in('knows')")
     Iterable<Person> getKnownRootedFromParam(@GremlinParam("person") Person person);
 
-    @Deprecated
-    @GremlinGroovy("_().out('knows')")
-    Iterable<Person> getDeprecatedKnowsPeople();
-
     @Property("boolean")
     void setBoolean(boolean b);
 

@@ -38,7 +38,7 @@ public class FramedVertexSetTest extends TestCase
         int counter = 0;
         for (Person person : set)
         {
-            assertTrue(person.asVertex().id().equals("1") || person.asVertex().id().equals("4") || person.asVertex().id().equals("6"));
+            assertTrue(person.asVertex().id().equals(1) || person.asVertex().id().equals(4) || person.asVertex().id().equals(6));
             counter++;
         }
         assertEquals(counter, 3);

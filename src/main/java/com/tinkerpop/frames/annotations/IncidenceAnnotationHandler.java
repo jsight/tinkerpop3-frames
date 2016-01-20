@@ -50,18 +50,19 @@ public class IncidenceAnnotationHandler implements AnnotationHandler<Incidence>
         else if (ClassUtilities.isAddMethod(method))
         {
             VertexFrame vertexFrame = ((VertexFrame) arguments[0]);
-            Edge result;
 
             switch (incidence.direction())
             {
             case OUT:
-                result = element.addEdge(incidence.label(), vertexFrame.asVertex());
-                return framedGraph.frame(result, method.getReturnType());
+                return framedGraph.addEdge(element, vertexFrame.asVertex(), incidence.label(), method.getReturnType());
+            // result = element.addEdge(incidence.label(), vertexFrame.asVertex());
+            // return framedGraph.frame(result, method.getReturnType());
             // return framedGraph.addEdge(null, element, vertexFrame.asVertex(), incidence.label(), Direction.OUT,
             // method.getReturnType());
             case IN:
-                result = vertexFrame.asVertex().addEdge(incidence.label(), element);
-                return framedGraph.frame(result, method.getReturnType());
+                return framedGraph.addEdge(vertexFrame.asVertex(), element, incidence.label(), method.getReturnType());
+            // result = vertexFrame.asVertex().addEdge(incidence.label(), element);
+            // return framedGraph.frame(result, method.getReturnType());
             // return framedGraph.addEdge(null, vertexFrame.asVertex(), element, incidence.label(), Direction.IN,
             // method.getReturnType());
             case BOTH:

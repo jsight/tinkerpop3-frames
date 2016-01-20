@@ -13,7 +13,6 @@ import com.tinkerpop.frames.FramedGraphFactory;
 import com.tinkerpop.frames.Property;
 import com.tinkerpop.frames.domain.classes.Person;
 import com.tinkerpop.frames.domain.classes.Project;
-import com.tinkerpop.frames.domain.incidences.Knows;
 
 /**
  * @author Bryn Cooke
@@ -34,13 +33,6 @@ public class JavaHandlerTest
         Person person2 = g.getVertex(2, Person.class);
         String profile2 = person2.getNameAndAge();
         Assert.assertEquals("vadas (27)", profile2);
-    }
-
-    @Test
-    public void testJavaHandlerEdges()
-    {
-        Knows knows = g.getEdge(7, Knows.class);
-        Assert.assertEquals("marko<->vadas", knows.getNames());
     }
 
     @Test

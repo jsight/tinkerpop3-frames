@@ -55,7 +55,6 @@ public class FrameInitializerTest
 
     public static FrameInitializer nameDefaulter = new FrameInitializer()
     {
-
         @Override
         public void initElement(Class<?> kind, FramedGraph<?> framedGraph, Element element)
         {

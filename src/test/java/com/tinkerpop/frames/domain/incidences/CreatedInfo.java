@@ -20,8 +20,8 @@ public interface CreatedInfo extends EdgeFrame {
 	Project getProject();
 
 	@Property("weight")
-	public Float getWeight();
+    Float getWeight();
 
 	@Property("weight")
-	public void setWeight(float weight);
+    void setWeight(float weight);
 }
