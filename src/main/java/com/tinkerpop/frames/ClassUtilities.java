@@ -1,7 +1,9 @@
 package com.tinkerpop.frames;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
+import java.beans.Introspector;
 import java.lang.reflect.*;
 import java.util.Map;
 
@@ -13,6 +15,57 @@ public class ClassUtilities {
     private static final String ADD = "add";
     private static final String IS = "is";
     private static final String CAN = "can";
+
+    public static Method getGetterMethodForSetter(final Method setterMethod)
+    {
+        String propertyName = getBeanPropertyName(setterMethod);
+        if (StringUtils.isBlank(propertyName))
+            return null;
+
+        for (Method method : setterMethod.getDeclaringClass().getMethods()) {
+            if (isGetMethod(method) && getBeanPropertyName(method).equals(propertyName)) {
+                return method;
+            }
+        }
+
+        return null;
+    }
+
+    public static Method getSetterMethodForGetter(final Method getterMethod)
+    {
+        String propertyName = getBeanPropertyName(getterMethod);
+        if (StringUtils.isBlank(propertyName))
+            return null;
+
+        for (Method method : getterMethod.getDeclaringClass().getMethods()) {
+            if (isSetMethod(method) && getBeanPropertyName(method).equals(propertyName)) {
+                return method;
+            }
+        }
+
+        return null;
+    }
+
+    public static String getBeanPropertyName(final Method method)
+    {
+        String methodName = method.getName();
+        Class<?> returnType = method.getReturnType();
+        boolean returnTypeIsBoolean = (returnType == Boolean.class || returnType == Boolean.TYPE);
+
+        String propertyName;
+        if (methodName.startsWith(GET))
+            propertyName = Introspector.decapitalize(StringUtils.removeStart(methodName, GET));
+        else if (methodName.startsWith(SET))
+            propertyName = Introspector.decapitalize(StringUtils.removeStart(methodName, SET));
+        else if (returnTypeIsBoolean && methodName.startsWith(IS))
+            propertyName = Introspector.decapitalize(StringUtils.removeStart(methodName, IS));
+        else if (returnTypeIsBoolean && methodName.startsWith(CAN))
+            propertyName = Introspector.decapitalize(StringUtils.removeStart(methodName, CAN));
+        else
+            propertyName = null;
+
+        return propertyName;
+    }
 
     public static boolean isGetMethod(final Method method) {
         Class<?> returnType = method.getReturnType();
